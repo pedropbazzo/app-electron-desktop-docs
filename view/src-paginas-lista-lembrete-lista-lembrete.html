@@ -1,0 +1,139 @@
+
+<h2 class="item-titulo titulo_desc_move">
+    src/paginas/lista-lembrete/lista-lembrete.component.ts
+</h2>
+<div class="content-area">
+<pre><code class="ts nonumber">01  import [curly_open] Component, OnInit, ViewChild [curly_close] from '@angular/core';
+02  import [curly_open] Lembrete [curly_close] from '../../interfaces/lembrete';
+03  import [curly_open] LembreteService [curly_close] from '../../services/lembrete.service';
+04  import [curly_open] ErrorMsgComponent [curly_close] from '../../compartilhado/
+    error-msg/error-msg.component';
+05  
+06  @Component([curly_open]
+07    selector: 'app-lista-lembrete',
+08    templateUrl: './lista-lembrete.component.html',
+09    styleUrls: ['./lista-lembrete.component.css']
+10  [curly_close])
+11  export class ListaLembreteComponent implements OnInit [curly_open]
+12    public lembretes: Lembrete[];
+13    @ViewChild(ErrorMsgComponent) errorMsgComponent: ErrorMsgComponent;
+14  
+15    constructor(private lembreteService: LembreteService) [curly_open] [curly_close]
+16  
+17    ngOnInit() [curly_open]
+18      this.getListaLembretes();
+19    [curly_close]
+20  
+21    getListaLembretes() [curly_open]
+22      this.lembreteService.getListaLembretes()
+23        .subscribe((lembretes: Lembrete[]) => [curly_open]
+24          this.lembretes = lembretes;
+25        [curly_close], () => [curly_open] this.errorMsgComponent.
+          setError('Falha ao buscar lembretes.'); [curly_close]);
+26    [curly_close]
+27  
+28    deletaLembrete(id: number) [curly_open]
+29      this.lembreteService.deletaLembrete(id)
+30        .subscribe(() => [curly_open]
+31          this.getListaLembretes();
+32        [curly_close], () => [curly_open] this.errorMsgComponent.
+          setError('Falha ao deletar lembrete.'); [curly_close]);
+33    [curly_close]
+34  
+35    existemLembretes(): boolean [curly_open]
+36      return this.lembretes && this.lembretes.length > 0;
+37    [curly_close]
+38  
+39  [curly_close]</code></pre>
+
+<h3>Visão geral</h3>
+
+<p>Nesse arquivo, chamado de <span class='lf-badge'>lista-lembrete.component.ts</span> encontraremos a classe do componente da página de listagem de lembretes. É nessa classe que colocamos os métodos de busca e deleção de lembretes, bem como regras de visualização que serão utilizadas pelo template do componente.</p>
+
+<h3>Comentários</h3>
+
+<p><span class='lf-strong'>Linha 1</span>: Importamos, do pacote @angular/core, três <i>decorators</i> que serão utilizados mais a frente no componente: <span class='lf-badge'>Component</span>, <span class='lf-badge'>OnInit</span> e <span class='lf-badge'>ViewChild</span>.
+<pre><code class="ts">import [curly_open] Component, OnInit, ViewChild [curly_close] from '@angular/core';</code></pre>
+</p>
+
+<p><span class='lf-strong'>Linha 2</span>: Importamos a interface <span class='lf-badge'>Lembrete</span> para, mais pra frente no arquivo, realizar a tipagem de parâmetros da classe.
+<pre><code class="ts">import [curly_open] Lembrete [curly_close] from '../../interfaces/lembrete';</code></pre>
+</p>
+
+<p><span class='lf-strong'>Linha 3</span>: Importamos o <i>service</i> que criamos para centralizar as interações com a API.
+<pre><code class="ts">import [curly_open] LembreteService [curly_close] from '../../services/lembrete.service';</code></pre>
+</p>
+
+<p><span class='lf-strong'>Linha 4</span>: Embora o componente de erro esteja disponível em toda a aplicação através da tag <span class='lf-badge'><app-error-msg></span>, para acessar seus métodos através da classe do componente precisamos importá-lo explicitamente.
+<pre><code class="ts nonumber">04  import [curly_open] ErrorMsgComponent [curly_close] 
+    from '../../compartilhado/error-msg/error-msg.component';</code></pre>
+</p>
+
+
+<p><span class='lf-strong'>Linhas 6 a 10:</span>  Logo abaixo das importações encontraremos o <i>Decorator</i>. O Angular CLI terá criado o <i>decorator</i> @Component automaticamente, junto com seus três atributos: <span class='lf-badge'>selector</span>, <span class='lf-badge'>templateUrl</span> e <span class='lf-badge'>styleUrls</span>.
+
+<pre><code class="ts">@Component([curly_open]
+  selector: 'app-lista-lembrete',
+  templateUrl: './lista-lembrete.component.html',
+  styleUrls: ['./lista-lembrete.component.css']
+[curly_close])</code></pre>
+
+<ul>
+<li><span class='lf-strong'>selector</span>: é o identificador do componente. Com ele podemos utilizar o componente dentro de outros componentes, como uma <span class='lf-badge'>tag</span>.
+</li>
+<li><span class='lf-strong'>templateUrl</span>: indica o caminho para o arquivo HTML onde ficará a formatação do nosso componente.
+</li>
+<li><span class='lf-strong'>styleUrls</span>: indica o caminho para o arquivo CSS de estilo do nosso componente. Os estilos definidos nesse arquivo só estarão disponíveis no arquivo .html definido no atributo <span class='lf-badge'>templateUrl</span>.
+</li>
+</ul>
+</p>
+
+<p><span class='lf-strong'>Linha 11</span>: Implementamos a interface <span class='lf-badge'>OnInit</span> na classe do componente. Dessa forma seremos obrigados a criar um método <span class='lf-badge'>ngOnInit</span>, que será executado pelo Angular ao final do carregamento da página.
+<pre><code class="ts">export class ListaLembreteComponent implements OnInit [curly_open]</code></pre>
+</p>
+
+<p><span class='lf-strong'>Linha 12</span>: Criamos um atributo chamado <span class='lf-badge'>lembrete</span> que espera receber uma lista de objetos do tipo <span class='lf-badge'>Lembrete</span>.
+<pre><code class="ts">public lembretes: Lembrete[];</code></pre>
+</p>
+
+<p><span class='lf-strong'>Linha 13</span>: Utilizamos o <i>decorator</i> <span class='lf-badge'>ViewChild</span> importado anteriormente para acessar a instância (criada no template <span class='lf-badge'>lista-lembrete.component.html</span>) do componente de erros, chamado de <span class='lf-badge'>ErrorMsgComponent</span>.
+<pre><code class="ts">@ViewChild(ErrorMsgComponent) errorMsgComponent: ErrorMsgComponent;</code></pre>
+</p>
+
+<p><span class='lf-strong'>Linha 15</span>: Realizamos a injeção do <i>service</i> utilizado na comunicação com a API de lembretes.
+<pre><code class="ts">constructor(private lembreteService: LembreteService) [curly_open] [curly_close]</code></pre>
+</p>
+
+<p><span class='lf-strong'>Linhas 17, 18 e 19</span>:  Implementamos o método <span class='lf-badge'>ngOnInit</span>, obrigatório a partir da implementação da interface <span class='lf-badge'>OnInit</span>, que será executado pelo Angular após o carregamento do componente da página (<i>Lifecycle hook</i>). Esse método executará, então, o método <span class='lf-badge'>getListaLembretes</span> criado mais adiante.
+<pre><code class="html">ngOnInit() [curly_open]
+ this.getListaLembretes();
+[curly_close]</code></pre>
+</p>
+
+<p><span class='lf-strong'>Linhas 21 a 26</span>: Criamos um método chamado <span class='lf-badge'>getListaLembretes</span> que executará o mesmo nome do <i>Service</i> <span class='lf-badge'>LembreteService</span> responsável por buscar, na API de lembretes, todos os lembretes cadastrados no momento. Caso a requisição seja bem sucedida, o resultado será atribuído ao atributo lembretes da classe do componente. Caso contrário, será utilizado o método <span class='lf-badge'>setError</span> do componente <span class='lf-badge'>ErrorMsgComponent</span> para exibir uma mensagem de erro para o usuário.
+<pre><code class="ts nonumber">21  getListaLembretes() [curly_open]
+22      this.lembreteService.getListaLembretes()
+23        .subscribe((lembretes: Lembrete[]) => [curly_open]
+24          this.lembretes = lembretes;
+25        [curly_close], () => [curly_open] this.errorMsgComponent.
+          setError('Falha ao buscar lembretes.'); [curly_close]);
+26    [curly_close]</code></pre>
+</p>
+
+<p><span class='lf-strong'>Linhas 28 a 33</span>: O método <span class='lf-badge'>deletaLembrete</span> utilizará o método de mesmo nome do <i>service</i> <span class='lf-badge'>LembreteService</span> para deletar um lembrete a partir do id numérico passado como parâmetro. Caso a requisição seja bem sucedida, utilizaremos o método <span class='lf-badge'>getListaLembretes</span> novamente para atualizar a lista de lembretes. Caso contrário, será utilizado o método <span class='lf-badge'>setError</span> do componente <span class='lf-badge'>ErrorMsgComponent</span> para exibir uma mensagem de erro para o usuário.
+<pre><code class="ts nonumber">28  deletaLembrete(id: number) [curly_open]
+29   this.lembreteService.deletaLembrete(id)
+30    .subscribe(() => [curly_open]
+31     this.getListaLembretes();
+32    [curly_close], () => [curly_open] this.errorMsgComponent.
+      setError('Falha ao deletar lembrete.'); [curly_close]);
+33  [curly_close]</code></pre>
+</p>
+
+<p><span class='lf-strong'>Linha 35, 36 e 37</span>: No último método da classe, que possui retorno booleano, verificaremos se o atributo possui algum item. Esse método é utilizado pelo template do componente.
+<pre><code class="ts">existemLembretes(): boolean [curly_open]
+ return this.lembretes && this.lembretes.length > 0;
+[curly_close]</code></pre>
+</p>
+
+</div>

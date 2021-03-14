@@ -1,0 +1,68 @@
+
+<h2 class="item-titulo titulo_desc_move">
+    src/compartilhado/error-msg/error-msg.component.ts
+</h2>
+<div class="content-area">
+<pre><code class="ts">import [curly_open] Component [curly_close] from '@angular/core';
+
+@Component([curly_open]
+  selector: 'app-error-msg',
+  templateUrl: './error-msg.component.html',
+  styleUrls: ['./error-msg.component.css']
+[curly_close])
+export class ErrorMsgComponent [curly_open]
+  public error: string;
+
+  setError(error: string, tempo: number = 5000) [curly_open]
+    this.error = error;
+    setTimeout(() => [curly_open]
+      this.error = null;
+    [curly_close], tempo);
+  [curly_close]
+
+[curly_close]</code></pre>
+
+<h3>Visão geral</h3>
+
+<p>Ao longo da aplicação temos varias ações que podem gerar erros por diversos motivos. Por exemplo, uma requisição para a API pode falhar e quando isso acontecer devemos exibir uma mensagem de erro para o usuário. Nesse arquivo, a classe do componente error-msg, definiremos a lógica de exibição desse alerta. </p>
+
+<h3>Comentários</h3>
+
+<p><span class='lf-strong'>Linha 1</span>: Importamos, do pacote <span class='lf-badge'>@angular/core</span>, o <i>decorator</i> <span class='lf-badge'>Component</span>.
+<pre><code class="ts">import [curly_open] Component [curly_close] from '@angular/core';</code></pre>
+</p>
+
+
+<p><span class='lf-strong'>Linhas 3 a 7:</span>  Logo abaixo das importações encontraremos o <i>Decorator</i>. O Angular CLI terá criado o <i>decorator</i> @Component automaticamente, junto com seus três atributos: <span class='lf-badge'>selector</span>, <span class='lf-badge'>templateUrl</span> e <span class='lf-badge'>styleUrls</span>.
+
+<pre><code class="ts">@Component([curly_open]
+  selector: 'app-error-msg',
+  templateUrl: './error-msg.component.html',
+  styleUrls: ['./error-msg.component.css']
+[curly_close])</code></pre>
+
+<ul>
+<li><span class='lf-strong'>selector</span>: é o identificador do componente. Com ele podemos utilizar o componente dentro de outros componentes, como uma <span class='lf-badge'>tag</span>.
+</li>
+<li><span class='lf-strong'>templateUrl</span>: indica o caminho para o arquivo HTML onde ficará a formatação do nosso componente.
+</li>
+<li><span class='lf-strong'>styleUrls</span>: indica o caminho para o arquivo CSS de estilo do nosso componente. Os estilos definidos nesse arquivo só estarão disponíveis no arquivo .html definido no atributo <span class='lf-badge'>templateUrl</span>.
+</li>
+</ul>
+</p>
+
+<p><span class='lf-strong'>Linha 9</span>: Criamos o atributo error do tipo string que receberá a mensagem de erro que deve ser exibida para o usuário.
+<pre><code class="ts">public error: string;</code></pre>
+</p>
+
+<p><span class='lf-strong'>Linhas 11 a 16</span>: Criamos o método <span class='lf-badge'>setError</span> que será chamado pelo componente pai, ou componente da página em que a mensagem será exibida. Este método será responsável por receber a mensagem de erro e atribuí-la ao atributo error da classe. Além disso, após o tempo definido pelo usuário em milissegundos, atribuímos um valor nulo a este atributo para que a mensagem seja ocultada pelo template do componente. Caso o tempo não seja informado, será utilizado 5 segundos como padrão.
+<pre><code class="ts">setError(error: string, tempo: number = 5000) [curly_open]
+ this.error = error;
+ setTimeout(() => [curly_open]
+  this.error = null;
+ [curly_close], tempo);
+[curly_close]</code></pre>
+</p>
+
+
+</div>

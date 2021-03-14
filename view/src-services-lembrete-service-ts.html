@@ -1,0 +1,126 @@
+
+<h2 class="item-titulo titulo_desc_move">
+    src/services/lembrete.service.ts
+</h2>
+<div class="content-area">
+<pre><code class="ts nonumber">01  import [curly_open] Injectable [curly_close] from '@angular/core';
+02  import [curly_open] HttpClient [curly_close] from '@angular/common/http';
+03  import [curly_open] Observable [curly_close] from 'rxjs';
+04  import [curly_open] environment [curly_close] from '../../environments/environment';
+05  import [curly_open] Lembrete [curly_close] from '../interfaces/lembrete';
+06  
+07  @Injectable([curly_open]
+08    providedIn: 'root'
+09  [curly_close])
+10  export class LembreteService [curly_open]
+11  
+12   constructor(private http: HttpClient) [curly_open] [curly_close]
+13  
+14    getListaLembretes(): Observable&lt;Lembrete[]&gt; [curly_open]
+15      const url = `$[curly_open]environment.lembretesApiUrl[curly_close]/lembrete`;
+16      return this.http.get&lt;Lembrete[]&gt;(url);
+17    [curly_close]
+18  
+19    getLembrete(id: number): Observable&lt;Lembrete&gt; [curly_open]
+20      const url = `$[curly_open]environment.lembretesApiUrl[curly_close]
+        /lembrete/$[curly_open]id[curly_close]`;
+21      return this.http.get&lt;Lembrete&gt;(url);
+22    [curly_close]
+23  
+24    addLembrete(lembrete: Lembrete): Observable&lt;Lembrete&gt; [curly_open]
+25      const url = `$[curly_open]environment.lembretesApiUrl[curly_close]/lembrete/`;
+26      return this.http.post&lt;Lembrete&gt;(url, lembrete);
+27    [curly_close]
+28  
+29    atualizaLembrete(lembrete: Lembrete): Observable&lt;Lembrete&gt; [curly_open]
+30      const url = `$[curly_open]environment.lembretesApiUrl[curly_close]
+        /lembrete/$[curly_open]lembrete.id[curly_close]`;
+31      return this.http.put&lt;Lembrete&gt;(url, lembrete);
+32    [curly_close]
+33  
+34    deletaLembrete(id: number): Observable&lt;Lembrete&gt; [curly_open]
+35      const url = `$[curly_open]environment.lembretesApiUrl[curly_close]
+        /lembrete/$[curly_open]id[curly_close]`;
+36      return this.http.delete&lt;Lembrete&gt;(url);
+37    [curly_close]
+38  
+39  [curly_close]</code></pre>
+
+<h3>Visão geral</h3>
+
+<p>Utilizamos um <i>Service</i> para concentrar todos as interações com a API. Nessa classe podemos listar, buscar, adicionar, atualizar e excluir lembretes a partir de seus respectivos métodos.</p>
+
+<h3>Comentários</h3>
+
+<p><span class='lf-strong'>Linha 1</span>: Importamos o <i>decorator</i> <span class='lf-badge'>Injectable</span> do pacote <span class='lf-badge'>@angular/core</span>. 
+<pre><code class="ts">import [curly_open] Injectable [curly_close] from '@angular/core';</code></pre>
+</p>
+
+<p><span class='lf-strong'>Linha 2</span>: Importamos o <span class='lf-badge'>HttpClient</span>, a biblioteca disponibilizada pelo Angular para a realização de requisições HTTP.
+<pre><code class="ts">import [curly_open] HttpClient [curly_close] from '@angular/common/http';</code></pre>
+</p>
+
+<p><span class='lf-strong'>Linha 3</span>: Importamos o tipo <span class='lf-badge'>Observable</span> da biblioteca rxjs. Mais a frente no arquivo faremos uso dessa importação para realizar a tipagem do retorno dos métodos.
+<pre><code class="ts">import [curly_open] Observable [curly_close] from 'rxjs';</code></pre>
+</p>
+
+<p><span class='lf-strong'>Linha 4</span>: Importamos a constante <span class='lf-badge'>environment</span> definida nos arquivos de <span class='lf-badge'>environments.ts</span> e <span class='lf-badge'>environments.prod.ts</span>. Durante o desenvolvimento o Angular irá realizar a importação do arquivo <span class='lf-badge'>environments.ts</span>, porém, durante a construção da aplicação para produção, será utilizado o arquivo <span class='lf-badge'>environments.prod.ts</span>.
+<pre><code class="ts">import [curly_open] environment [curly_close] from '../../environments/environment';</code></pre>
+</p>
+
+<p><span class='lf-strong'>Linha 5</span>: Importamos a interface <span class='lf-badge'>Lembrete</span> que, mais a frente no arquivo, será utilizada para tipar as respostas da API, os retornos dos métodos e os parâmetros dos mesmos.
+<pre><code class="ts">import [curly_open] Lembrete [curly_close] from '../interfaces/lembrete';</code></pre>
+</p>
+
+<p><span class='lf-strong'>Linha 7, 8 e 9:</span>: Utilizamos o <i>decorator</i> <span class='lf-badge'>Injectable</span> para indicar pro Angular que a classe <span class='lf-badge'>LembreteService</span> é um service, dessa forma o Angular criará uma única instância desse objeto (um <i>singleton</i>) que será passado para todos os componentes que o utilizem (através de injeção de dependência). Utilizamos o atributo <span class='lf-badge'>providedIn</span> para informar escopo em que esse <i>singleton</i> estará disponível que, no nosso caso, estará disponível em toda a aplicação (root).
+<pre><code class="ts">@Injectable([curly_open]
+  providedIn: 'root'
+[curly_close])</code></pre>
+</p>
+
+<p><span class='lf-strong'>Linha 12</span>: Injetamos a biblioteca <span class='lf-badge'>HttpClient</span> para que possamos utilizá-la para realizar requisições HTTP para a API de lembretes. Esta biblioteca estará, então, disponível para toda a classe a partir do atributo <span class='lf-badge'>http</span> (poderemos acessá-la com <span class='lf-badge'>this.http</span>)
+<pre><code class="ts">constructor(private http: HttpClient) [curly_open] [curly_close]</code></pre>
+</p>
+
+<p><span class='lf-strong'>Linhas 14 a 17</span>: O primeiro método do service é responsável por obter da API, no <i>endpoint</i> lembrete, uma lista de todos os lembretes cadastrados. Perceba que concatenamos o nome do <i>endpoint</i> ao restante da URL, que armazenamos no arquivo <span class='lf-badge'>environments.ts</span>.
+<pre><code class="ts">getListaLembretes(): Observable<Lembrete[]> [curly_open]
+ const url = `$[curly_open]environment.lembretesApiUrl[curly_close]/lembrete`;
+ return this.http.get<Lembrete[]>(url);
+[curly_close]</code></pre>
+</p>
+
+<p><span class='lf-strong'>Linhas 19 a 22</span>: A partir de um <span class='lf-badge'>id</span> passado para o método por parâmetro, buscamos na API este lembrete e retornamos um <i>Observable</i> contendo a informação.
+<pre><code class="ts nonumber">01  getLembrete(id: number): Observable&lt;Lembrete&gt; [curly_open]
+02   const url = `$[curly_open]environment.lembretesApiUrl[curly_close]
+     /lembrete/$[curly_open]id[curly_close]`;
+03   return this.http.get&lt;Lembrete&gt;(url);
+04  [curly_close]</code></pre>
+</p>
+
+<p><span class='lf-strong'>Linhas 24 a 27</span>: O método <span class='lf-badge'>addLembrete</span> é responsável por enviar um novo lembrete, criado pelo usuário, para o <i>endpoint</i> <span class='lf-badge'>lembrete</span> da API. Repare que, embora o <i>endpoint</i> seja o mesmo que o utilizado para listar todos os lembretes, dessa vez utilizamos o método <span class='lf-badge'>post</span> da da biblioteca HttpClient.
+<pre><code class="html">addLembrete(lembrete: Lembrete): Observable<Lembrete> [curly_open]
+ const url = `$[curly_open]environment.lembretesApiUrl[curly_close]/lembrete/`;
+ return this.http.post<Lembrete>(url, lembrete);
+[curly_close]</code></pre>
+</p>
+
+<p><span class='lf-strong'>Linha 29 a 32</span>: Criamos o método <span class='lf-badge'>atualizaLembrete</span> que será chamado sempre que precisarmos atualizar as informações de um lembrete. Seguindo a mesma lógica do método anterior, neste método realizamos uma requisição para o <i>endpoint</i> <span class='lf-badge'>lembrete</span> da API. Aqui, entretanto, utilizaremos o método <span class='lf-badge'>PUT</span>.
+
+<pre><code class="ts nonumber">01  atualizaLembrete(lembrete: Lembrete): Observable&lt;Lembrete&gt; [curly_open]
+02   const url = `$[curly_open]environment.lembretesApiUrl[curly_close]
+     /lembrete/$[curly_open]lembrete.id[curly_close]`;
+03   return this.http.put&lt;Lembrete&gt;(url, lembrete);
+04  [curly_close]</code></pre>
+</p>
+
+<p><span class='lf-strong'>Linha 34 a 37</span>: No último método, chamado de <span class='lf-badge'>deletaLembrete</span>, realizamos a exclusão de um lembrete a partir do <span class='lf-badge'>id</span> informado via parâmetro.
+<pre><code class="html nonumber">01  deletaLembrete(id: number): Observable&lt;Lembrete&gt; [curly_open]
+02   const url = `$[curly_open]environment.lembretesApiUrl[curly_close]
+     /lembrete/$[curly_open]id[curly_close]`;
+03   return this.http.delete&lt;Lembrete&gt;(url);
+04  [curly_close]</code></pre>
+</p>
+
+
+
+</div>

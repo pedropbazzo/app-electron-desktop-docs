@@ -1,0 +1,49 @@
+
+<h2 class="item-titulo titulo_desc_move">
+    src/interfaces/lembrete.ts
+</h2>
+<div class="content-area">
+<pre><code class="ts">type prioridade = 'BAIXA' | 'MEDIA' | 'ALTA';
+export interface Lembrete [curly_open]
+    id: number;
+    conteudo: string;
+    arquivado: boolean;
+    prioridade: prioridade;
+    modificado: number;
+[curly_close]</code></pre>
+
+<h3>Visão geral</h3>
+
+<p>Nesta interface definimos a estrutura da entidade lembrete, seguindo a mesma estrutura de resposta da API de lembretes. Essa interface será utilizada por toda a aplicação auxiliando o desenvolvimento da mesma. Entretanto, ao construirmos a aplicação, esta interface deixará de existir.</p>
+
+<h3>Comentários</h3>
+
+<p><span class='lf-strong'>Linha 1</span>: Criamos um novo tipo chamado <span class='lf-badge'>prioridade</span>. Este tipo só pode receber um dos três seguintes valores: <span class='lf-badge'>BAIXA</span>, <span class='lf-badge'>MÉDIA</span> e <span class='lf-badge'>ALTA</span>.
+<pre><code class="ts">type prioridade = 'BAIXA' | 'MEDIA' | 'ALTA';</code></pre>
+</p>
+
+<p><span class='lf-strong'>Linha 2</span>: Criamos e exportamos a interface <span class='lf-badge'>Lembrete</span>. Exportá-la é necessário para que esta possa ser utilizada em outros pontos da aplicação.
+<pre><code class="ts">export interface Lembrete [curly_open]</code></pre>
+</p>
+
+<p><span class='lf-strong'>Linha 3</span>: O atributo <span class='lf-badge'>id</span> receberá o identificador único e numérico do lembrete. Este valor é gerado pela API durante a inserção de um lembrete.
+<pre><code class="ts">id: number;</code></pre>
+</p>
+
+<p><span class='lf-strong'>Linha 4</span>: No atributo <span class='lf-badge'>conteudo</span> será atribuído o lembrete em si, uma fase que nos permita lembrar da atividade a ser realizada.
+<pre><code class="ts">conteudo: string;</code></pre>
+</p>
+
+<p><span class='lf-strong'>Linha 5</span>: Este atributo, embora não seja utilizado pela nossa aplicação, está presente na resposta da API. Ele poderia ser utilizado para criar funcionalidades do soft delete, por exemplo.
+<pre><code class="ts">arquivado: boolean;</code></pre>
+</p>
+
+<p><span class='lf-strong'>Linha 6</span>: No atributo <span class='lf-badge'>prioridade</span> definimos que seus valores devem ser do tipo <span class='lf-badge'>prioridade</span> criado na linha 1. Isto é, deve ser a string <span class='lf-badge'>BAIXA</span>, <span class='lf-badge'>MÉDIA</span> ou <span class='lf-badge'>ALTA</span>.
+<pre><code class="ts">prioridade: prioridade;</code></pre>
+</p>
+
+<p><span class='lf-strong'>Linha 7</span>: O atributo <span class='lf-badge'>modificado</span> é armazenada a data desde a ultima atualização (ou inserção) do lembrete. Esta data é criada automaticamente pela API no momento de inserção ou atualização do lembrete e está no formato UNIX, isto é, um número inteiro que representa a contagem do tempo recorrido em segundos desde 01 de Janeiro de 1970.
+<pre><code class="ts">modificado: number;</code></pre>
+</p>
+
+</div>

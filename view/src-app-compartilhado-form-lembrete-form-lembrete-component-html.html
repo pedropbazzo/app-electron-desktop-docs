@@ -1,0 +1,112 @@
+
+<h2 class="item-titulo titulo_desc_move">
+    src/app/compartilhado/form-lembrete/form-lembrete.component.html
+</h2>
+<div class="content-area">
+<pre><code class="html">&lt;form #f="ngForm" (ngSubmit)="onSubmit()"&gt;
+  &lt;div class="form-group"&gt;
+    &lt;label for="prioridade"&gt;Prioridade&lt;/label&gt;
+    &lt;select 
+      #prioridade="ngModel" 
+      class="form-control" 
+      [class.is-invalid]="!prioridade.valid && prioridade.touched" 
+      id="prioridade"
+      name="prioridade" 
+      [(ngModel)]="lembrete.prioridade" 
+      required&gt;
+      &lt;option [ngValue]="undefined"&gt;Selecione...&lt;/option&gt;
+      &lt;option value="BAIXA"&gt;BAIXA&lt;/option&gt;
+      &lt;option value="MEDIA"&gt;MÉDIA&lt;/option&gt;
+      &lt;option value="ALTA"&gt;ALTA&lt;/option&gt;
+    &lt;/select&gt;
+    &lt;div *ngIf="!prioridade.valid && prioridade.touched" class="invalid-feedback"&gt;
+      Selecione o nível de prioridade do lembrete.
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="form-group"&gt;
+    &lt;label for="conteudo"&gt;Lembrete&lt;/label&gt;
+    &lt;textarea 
+      class="form-control" 
+      id="conteudo" 
+      rows="3" 
+      placeholder="Seu lembrete..." name="conteudo"
+      [(ngModel)]="lembrete.conteudo" 
+      #conteudo="ngModel" 
+      [class.is-invalid]="!conteudo.valid && conteudo.touched"
+      required&gt;
+    &lt;/textarea&gt;
+    &lt;div *ngIf="!conteudo.valid && conteudo.touched" class="text-danger"&gt;
+      Descreva o lembrete.
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;button class="btn btn-primary" type="submit" [disabled]="!f.valid"&gt;Salvar&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+
+<h3>Visão geral</h3>
+
+<p>Neste arquivo colocamos todo o template do nosso componente de formulário. Isto é, toda a formatação HTML bem como atributos específicos do Angular e o componente que mensagem de erro que criamos. Utilizamos diversas classes do Bootstrap para estilizar o formulário como <span class='lf-badge'>form-group</span>, <span class='lf-badge'>form-control</span> e outras.</p>
+
+<h3>Comentários</h3>
+
+<p><span class='lf-strong'>Linha 1</span>: Criamos um formulário que receberá dois atributos. O primeiro é uma variável local (recurso do Angular), que chamamos de <span class='lf-badge'>#f</span>. Com essa variável será possível impedir que o formulário seja submetido sem que todos os campos tenham sido preenchidos corretamente. O segundo, chamado <span class='lf-badge'>(ngSubmit)</span>, recebe o método onSubmit que será executado assim que o formulário for submetido.
+<pre><code class="html">&lt;form #f="ngForm" (ngSubmit)="onSubmit()"&gt;</code></pre>
+</p>
+
+<p><span class='lf-strong'>Linha 3 a 16</span>: No primeiro campo do nosso formulário teremos um <i>input</i> do tipo <i>select</i> onde o usuário poderá escolher o nível de prioridade do bilhete. Nesse elemento temos diversos atributos:
+
+<ul>
+<li><span class='lf-strong'>#prioridade</span>: Criamos uma variável local que recebe o elemento <span class='lf-badge'>ngModel</span>. Dessa forma, o Angular disponibilizará nessa variável <span class='lf-badge'>flags</span> que nos permitem identificar quando o campo foi clicado, quando foi preenchido de forma incorreta e mais.</li>
+<li><span class='lf-strong'>[class.is-invalid]</span>: Caso o valor preenchido não for válido (nulo, vazio ou undefined) e o campo já tiver sido clicado, utilizaremos a classe <span class='lf-badge'>is-invalid</span> do Bootstrap para colorir o campo de vermelho.</li>
+<li><span class='lf-strong'>[(ngModel)]</span>: Informamos ao Angular que o valor do atributo prioridade do lembrete armazenado no atributo lembrete da classe do componente deve ser o mesmo que o valor exibido pelo campo do formulário. Se o valor mudar na classe, reflete no campo. Se mudar no campo (por interação do usuário), reflete na classe. Chamamos essa técnica de <span class='lf-badge'>two-way data binding</span>. Caso o valor desse atributo não seja válido, será exibida a opção "Selecione...".</li>
+</ul>
+
+<pre><code class="html">&lt;label for="prioridade"&gt;Prioridade&lt;/label&gt;
+&lt;select 
+#prioridade="ngModel" 
+class="form-control" 
+[class.is-invalid]="!prioridade.valid && prioridade.touched" 
+id="prioridade"
+name="prioridade" 
+[(ngModel)]="lembrete.prioridade" 
+required&gt;
+ &lt;option [ngValue]="undefined"&gt;Selecione...&lt;/option&gt;
+ &lt;option value="BAIXA"&gt;BAIXA&lt;/option&gt;
+ &lt;option value="MEDIA"&gt;MÉDIA&lt;/option&gt;
+ &lt;option value="ALTA"&gt;ALTA&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+</p>
+
+<p><span class='lf-strong'>Linhas 17, 18 e 19</span>: Aplicamos a mesma lógica da linha 16, em que verificamos por erros no campo clicado, para definir se a mensagem de erro referente ao preenchimento do campo deve ou não ser exibida.
+<pre><code class="html">&lt;div *ngIf="!prioridade.valid && prioridade.touched" class="invalid-feedback"&gt;
+ Selecione o nível de prioridade do lembrete.
+&lt;/div&gt;</code></pre>
+</p>
+
+<p><span class='lf-strong'>Linhas 22 a 32</span>: Similar ao que fizemos no campo de seleção do nível de prioridade, o <span class='lf-badge'>textarea</span> que criamos para receber o conteúdo do lembrete também contará com atributos exclusivos do Angular:
+
+<ul>
+<li><span class='lf-strong'>#conteudo</span>: Criamos uma variável local que recebe o elemento <span class='lf-badge'>ngModel</span>. Dessa forma, o Angular disponibilizará nessa variável <span class='lf-badge'>flags</span> que nos permitem identificar quando o campo foi clicado, quando foi preenchido de forma incorreta e mais.</li>
+<li><span class='lf-strong'>[class.is-invalid]</span>: Caso o valor preenchido não for válido (nulo, vazio ou undefined) e o campo já tiver sido clicado, utilizaremos a classe <span class='lf-badge'>is-invalid</span> do Bootstrap para colorir o campo de vermelho.</li>
+<li><span class='lf-strong'>[(ngModel)]</span>: Informamos ao Angular que o valor do atributo conteudo do lembrete armazenado no atributo lembrete da classe do componente deve ser o mesmo que o valor exibido pelo campo do formulário. Se o valor mudar na classe, reflete no campo. Se mudar no campo (por interação do usuário), reflete na classe. Chamamos essa técnica de <span class='lf-badge'>two-way data binding</span>.</li>
+</ul>
+
+<pre><code class="html">&lt;label for="conteudo"&gt;Lembrete&lt;/label&gt;
+&lt;textarea 
+ class="form-control" 
+ id="conteudo" 
+ rows="3" 
+ placeholder="Seu lembrete..." name="conteudo"
+ #conteudo="ngModel" 
+ [class.is-invalid]="!conteudo.valid && conteudo.touched"
+ [(ngModel)]="lembrete.conteudo" 
+ required&gt;
+&lt;/textarea&gt;</code></pre>
+</p>
+
+<p><span class='lf-strong'>Linhas 33, 34 e 35</span>: Assim como no campo de prioridade, exibiremos uma mensagem abaixo do <span class='lf-badge'>textarea</span> caso o mesmo não tenha sido preenchido corretamente.
+<pre><code class="html">&lt;div *ngIf="!conteudo.valid && conteudo.touched" class="text-danger"&gt;
+ Descreva o lembrete.
+&lt;/div&gt;</code></pre>
+</p>
+
+</div>

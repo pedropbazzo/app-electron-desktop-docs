@@ -1,0 +1,26 @@
+
+<h2 class="item-titulo titulo_desc_move">
+    src/compartilhado/error-msg/error-msg.component.html
+</h2>
+<div class="content-area">
+<pre><code class="html">&lt;div class="alert alert-danger" *ngIf="error"&gt;
+  [curly_open][curly_open] error [curly_close][curly_close]
+&lt;/div&gt;</code></pre>
+
+<h3>Visão geral</h3>
+
+<p>Este é o template do componente de erro. É aqui que definimos a aparência da mensagem de erro, bem como se esta deve ser exibida ou não.</p>
+
+<h3>Comentários</h3>
+
+<p><span class='lf-strong'>Linha 1</span>: Criamos uma div com as classes <span class='lf-badge'>alert</span> e <span class='lf-badge'>alert-danger</span> do bootstrap. Essas classes darão uma aparência avermelhada ao elemento. Além disso, utilizamos o atributo <span class='lf-badge'>*ngIf</span> para verificar se existe valor atribuído ao atributo error da classe do componente. Caso verdadeiro, a mensagem será exibida.
+<pre><code class="html">&lt;div class="alert alert-danger" *ngIf="error"&gt;</code></pre>
+</p>
+
+<p><span class='lf-strong'>Linha 2</span>: Exibimos o erro definido pelo componente pai.
+<pre><code class="html">[curly_open][curly_open] error [curly_close][curly_close]</code></pre>
+</p>
+
+
+
+</div>

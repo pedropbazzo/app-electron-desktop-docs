@@ -1,0 +1,70 @@
+
+<h2 class="item-titulo titulo_desc_move">
+    src/app-routing.module.ts
+</h2>
+<div class="content-area">
+<pre><code class="ts nonumber">01  import [curly_open] NgModule [curly_close] from '@angular/core';
+02  import [curly_open] Routes, RouterModule [curly_close] from '@angular/router';
+03  import [curly_open] ListaLembreteComponent [curly_close] 
+    from './paginas/lista-lembrete/lista-lembrete.component';
+04  import [curly_open] CriarLembreteComponent [curly_close] 
+    from './paginas/criar-lembrete/criar-lembrete.component';
+05  import [curly_open] EditarLembreteComponent [curly_close] 
+    from './paginas/editar-lembrete/editar-lembrete.component';
+06  
+07  const routes: Routes = [
+08    [curly_open]path: '', component: ListaLembreteComponent[curly_close],
+09    [curly_open]path: 'lembrete/criar', 
+      component: EditarLembreteComponent[curly_close],
+10    [curly_open]path: 'lembrete/editar/:id', 
+      component: CriarLembreteComponent[curly_close],
+11    [curly_open]path: '**', redirectTo: ''[curly_close]
+12  ];
+13  
+14  @NgModule([curly_open]
+15    imports: [RouterModule.forRoot(routes)],
+16    exports: [RouterModule]
+17  [curly_close])
+18  export class AppRoutingModule [curly_open] [curly_close]</code></pre>
+
+<h3>Visão geral</h3>
+
+<p>Nesse módulo, criado automaticamente pelo Angular CLI, definiremos as rotas da nossa aplicação. Isto é, definiremos que para uma dada URI acessada pelo usuário, um determinado componente (de página) deve ser carregado.</p>
+
+<h3>Comentários</h3>
+
+<p><span class='lf-strong'>Linha 1</span>:  O módulo <span class='lf-badge'>NgModule</span> permitirá o uso de um <i>decorator</i> que indica pro Angular que a classe <span class='lf-badge'>AppRoutingModule</span> se trata de um módulo.
+<pre><code class="ts">import [curly_open] NgModule [curly_close] from '@angular/core';</code></pre>
+</p>
+
+<p><span class='lf-strong'>Linha 2</span>: Importamos o módulo RouterModule e a interface Routes que serão utilizados para realizar, de fato, o roteamento da aplicação e a tipagem do objeto de configuração da rota.
+<pre><code class="ts">import [curly_open] Routes, RouterModule [curly_close] from '@angular/router';</code></pre>
+</p>
+
+<p><span class='lf-strong'>Linhas 3, 4 e 5</span>: Importamos os componentes das páginas da nossa aplicação.
+<pre><code class="ts nonumber">03  import [curly_open] ListaLembreteComponent [curly_close] 
+    from './paginas/lista-lembrete/lista-lembrete.component';
+04  import [curly_open] CriarLembreteComponent [curly_close] 
+    from './paginas/criar-lembrete/criar-lembrete.component';
+05  import [curly_open] EditarLembreteComponent [curly_close] 
+    from './paginas/editar-lembrete/editar-lembrete.component';</code></pre>
+</p>
+
+<p><span class='lf-strong'>Linha 7 a 12</span>: Definimos cada uma das rotas de nossa aplicação e seus respectivos componentes. Para a rota de edição teremos teremos, também, a presença de um parâmetro chamado <span class='lf-badge'>id</span>. Além disso, para qualquer outra rota desconhecida, redirecionaremos o usuário para a página inicial.
+<pre><code class="ts">const routes: Routes = [
+  [curly_open]path: '', component: ListaLembreteComponent[curly_close],
+  [curly_open]path: 'lembrete/criar', component: EditarLembreteComponent[curly_close],
+  [curly_open]path: 'lembrete/editar/:id', component: CriarLembreteComponent[curly_close],
+  [curly_open]path: '**', redirectTo: ''[curly_close]
+];</code></pre>
+</p>
+
+<p><span class='lf-strong'>Linhas 14 a 17</span>: No <i>decorator</i> <span class='lf-badge'>NgModule</span> iniciamos o roteamento da aplicação com o método <span class='lf-badge'>forRoot</span> e exportamos o módulo criado.
+<pre><code class="ts">@NgModule([curly_open]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+[curly_close])</code></pre>
+</p>
+
+
+</div>

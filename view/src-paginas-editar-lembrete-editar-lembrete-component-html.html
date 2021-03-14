@@ -1,0 +1,41 @@
+
+<h2 class="item-titulo titulo_desc_move">
+    src/paginas/editar-lembrete/editar-lembrete.component.html
+</h2>
+<div class="content-area">
+<pre><code class="html nonumber">01  &lt;div class="container mt-3"&gt;
+02    &lt;div class="row"&gt;
+03      &lt;div class="col-md-8 mx-auto"&gt;
+04        &lt;app-error-msg&gt;&lt;/app-error-msg&gt;
+05        &lt;div class="card"&gt;
+06          &lt;div class="card-header"&gt;
+07            Editar
+08          &lt;/div&gt;
+09          &lt;div class="card-body"&gt;
+10            &lt;app-form-lembrete [lembrete]="lembrete" 
+              (outputLembrete)="atualizaLembrete($event)"&gt;&lt;/app-form-lembrete&gt;
+11          &lt;/div&gt;
+12        &lt;/div&gt;
+13      &lt;/div&gt;
+14    &lt;/div&gt;
+15  &lt;/div&gt;</code></pre>
+
+<h3>Visão geral</h3>
+
+<p>No template do componente da página de edição encontraremos a instancia do componente de mensagem de erro, bem como do componente de formulário.</p>
+
+<h3>Comentários</h3>
+
+<p><span class='lf-strong'>Linhas 3 e 4</span>: Criamos uma instância do componente de erros em uma coluna de tamanho 8 e centralizada.
+<pre><code class="html">&lt;div class="col-md-8 mx-auto"&gt;
+ &lt;app-error-msg&gt;&lt;/app-error-msg&gt;</code></pre>
+</p>
+
+<p><span class='lf-strong'>Linhas 9, 10 e 11</span>: Colocamos a instância do componente de formulário dentro do corpo do <span class='lf-badge'>card</span> bootstrap que criamos. Passamos para o componente, através do atributo <span class='lf-badge'>(outputLembrete)</span>, o método que será executado quando o formulário for submetido. O componente irá, então, emitir o lembrete criado pelo usuário que podemos capturar através da variável <span class='lf-badge'>$event</span>. Além disso, passamos o lembrete atual (antes das modificações, buscado diretamente na API no momento que o componente da página foi carregado) para o componente do formulário através do atributo <span class='lf-badge'>[lembrete]</span>.
+<pre><code class="html nonumber">09  &lt;div class="card-body"&gt;
+10   &lt;app-form-lembrete [lembrete]="lembrete" 
+     (outputLembrete)="addLembrete($event)"&gt;&lt;/app-form-lembrete&gt;
+11  &lt;/div&gt;</code></pre>
+</p>
+
+</div>

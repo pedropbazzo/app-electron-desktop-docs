@@ -1,0 +1,73 @@
+
+<h2 class="item-titulo titulo_desc_move">
+    src/app/compartilhado/form-lembrete/form-lembrete.component.ts
+</h2>
+<div class="content-area">
+<pre><code class="ts nonumber">01  import [curly_open] Component, Input, Output, 
+    EventEmitter [curly_close] from '@angular/core';
+02  import [curly_open] Lembrete [curly_close] 
+    from '../../interfaces/lembrete';
+03  
+04  @Component([curly_open]
+05    selector: 'app-form-lembrete',
+06    templateUrl: './form-lembrete.component.html',
+07    styleUrls: ['./form-lembrete.component.css']
+08  [curly_close])
+09  export class FormLembreteComponent [curly_open]
+10    @Input() lembrete: Lembrete = <Lembrete>[curly_open][curly_close];
+11    @Output() outputLembrete: EventEmitter<Lembrete> = new EventEmitter();
+12  
+13    onSubmit() [curly_open]
+14      this.outputLembrete.emit(this.lembrete);
+15    [curly_close]
+16  [curly_close]</code></pre>
+
+<h3>Visão geral</h3>
+<p>Na classe do componente form-lembrete, chamada de <span class='lf-badge'>FormLembreteComponent</span>, colocamos a entrada e saída de dados do componente. Esses dados tem como origem e destino o componente pai (ou o componente da página) que estiver instanciando o nosso componente de formulário.</p>
+
+<h3>Comentários</h3>
+
+<p><span class='lf-strong'>Linhas 1 e 2</span>: Realizamos a importação dos <i>decorators</i> <span class='lf-badge'>Component</span>, <span class='lf-badge'>Input</span> e <span class='lf-badge'>Output</span>, bem como do <span class='lf-badge'>EventEmitter</span>, que será utilizado para enviar dados do componente de formulário para o componente pai, e da interface Lembrete.
+<pre><code class="ts nonumber">01 import [curly_open] Component, Input, Output, 
+   EventEmitter [curly_close] from '@angular/core';
+02 import [curly_open] Lembrete [curly_close] 
+   from '../../interfaces/lembrete';</code></pre>
+</p>
+
+<p><span class='lf-strong'>Linhas 4 a 8:</span>  Logo abaixo das importações encontraremos o <i>Decorator</i>. O Angular CLI terá criado o <i>decorator</i> @Component automaticamente, junto com seus três atributos: <span class='lf-badge'>selector</span>, <span class='lf-badge'>templateUrl</span> e <span class='lf-badge'>styleUrls</span>.
+
+<pre><code class="ts">@Component([curly_open]
+  selector: 'app-form-lembrete',
+  templateUrl: './form-lembrete.component.html',
+  styleUrls: ['./form-lembrete.component.css']
+[curly_close])</code></pre>
+
+<ul>
+<li><span class='lf-strong'>selector</span>: é o identificador do componente. Com ele podemos utilizar o componente dentro de outros componentes, como uma <span class='lf-badge'>tag</span>.
+</li>
+<li><span class='lf-strong'>templateUrl</span>: indica o caminho para o arquivo HTML onde ficará a formatação do nosso componente.
+</li>
+<li><span class='lf-strong'>styleUrls</span>: indica o caminho para o arquivo CSS de estilo do nosso componente. Os estilos definidos nesse arquivo só estarão disponíveis no arquivo .html definido no atributo <span class='lf-badge'>templateUrl</span>.
+</li>
+</ul>
+</p>
+
+<p><span class='lf-strong'>Linha 10</span>: Criamos um atributo com o <i>decorator</i> <span class='lf-badge'>@Input</span>, tornando possível receber um lembrete do componente pai (ou componente da página).
+<pre><code class="ts">@Input() lembrete: Lembrete = <Lembrete>[curly_open][curly_close];</code></pre>
+</p>
+
+<p><span class='lf-strong'>Linha 11</span>: Criamos um atributo com o <i>decorator</i> <span class='lf-badge'>Output</span> e criamos uma instância do <span class='lf-badge'>EventEmitter</span>. Dessa forma podemos, sempre que precisarmos, emitir um evento que executará um método do componente pai (ou componente da página) que for passado no atributo <span class='lf-badge'>outputLembrete</span>.
+<pre><code class="ts">@Output() outputLembrete: EventEmitter<Lembrete> = new EventEmitter();</code></pre>
+</p>
+
+<p>Com os atributos decorados com <span class='lf-badge'>@Input</span> e <span class='lf-badge'>Output</span> seremos capazes de enviar e receber dados do componente de formulário a partir dos componentes das páginas de criação e edição de lembretes. Podemos ver claramente a utilização desses atributos nos templates dos componentes citados anteriormente:  componente da página de criação e componente da página de edição</p>
+
+
+
+<p><span class='lf-strong'>Linha 13, 14 e 15</span>: O método <span class='lf-badge'>onSubmit</span>, único método do nosso componente, será executado sempre que o formulário do componente for submetido. Dessa forma podemos utilizar o método <span class='lf-badge'>emit</span> do <span class='lf-badge'>EventEmitter</span> para executar um método do componente pai.
+<pre><code class="ts">onSubmit() [curly_open]
+ this.outputLembrete.emit(this.lembrete);
+[curly_close]</code></pre>
+</p>
+
+</div>

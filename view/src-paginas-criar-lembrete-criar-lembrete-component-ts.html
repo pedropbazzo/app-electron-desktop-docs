@@ -1,0 +1,105 @@
+
+<h2 class="item-titulo titulo_desc_move">
+    src/paginas/criar-lembrete/criar-lembrete.component.ts
+</h2>
+<div class="content-area">
+<pre><code class="ts nonumber">01  import [curly_open] Component, ViewChild [curly_close] from '@angular/core';
+01  import [curly_open] Router [curly_close] from '@angular/router';
+01  import [curly_open] ErrorMsgComponent [curly_close] 
+    from '../../compartilhado/error-msg/error-msg.component';
+01  import [curly_open] LembreteService [curly_close] 
+    from '../../services/lembrete.service';
+01  import [curly_open] Lembrete [curly_close] 
+    from 'src/app/interfaces/lembrete';
+01  
+01  @Component([curly_open]
+01    selector: 'app-criar-lembrete',
+01    templateUrl: './criar-lembrete.component.html',
+01    styleUrls: ['./criar-lembrete.component.css']
+01  [curly_close])
+01  export class CriarLembreteComponent [curly_open]
+01    @ViewChild(ErrorMsgComponent) errorMsgComponent: ErrorMsgComponent;
+01  
+01    constructor(
+01      private lembreteService: LembreteService,
+01      private router: Router) [curly_open] [curly_close]
+01  
+01    addLembrete(lembrete: Lembrete) [curly_open]
+01      this.lembreteService.addLembrete(lembrete)
+01        .subscribe(
+01          () => [curly_open] this.router.navigateByUrl('/'); [curly_close],
+01          () => [curly_open] this.errorMsgComponent
+            .setError('Falha ao adicionar lembrete.'); [curly_close]);
+01    [curly_close]
+01  
+01  [curly_close]</code></pre>
+
+<h3>Visão geral</h3>
+
+<p>Nesse componente, criado para a página de criação de lembretes, temos o método que será executado pelo componente de formulário quando o mesmo for submetido. Temos, também, toda a lógica necessária para realizar a requisição para a API, e adicionar um novo lembrete, bem como a lógica para a exibição de erro a partir do componente de mensagem de erro. </p>
+
+<h3>Comentários</h3>
+
+<p><span class='lf-strong'>Linha 1</span>: Importamos os <i>decorator</i> <span class='lf-badge'>Component</span> e <span class='lf-badge'>ViewChild</span>. O primeiro será utilizado para indicarmos pro Angular os elementos do componente da página e o segundo para que possamos acessar métodos do componente de erros instanciado no template da nossa página.
+<pre><code class="ts">import [curly_open] Component, ViewChild [curly_close] from '@angular/core';</code></pre>
+</p>
+
+<p><span class='lf-strong'>Linha 2</span>: Realizamos a importação do <span class='lf-badge'>Router</span> para que, mais para frente, possamos redirecionar o usuário para a página inicial uma vez que o lembrete tenha sido cadastrado com sucesso.
+<pre><code class="ts">import [curly_open] Router [curly_close] from '@angular/router';</code></pre>
+</p>
+
+<p><span class='lf-strong'>Linha 3</span>: Embora o componente de erro esteja disponível em toda a aplicação através da tag <span class='lf-badge'>&lt;app-error-msg></span>, para acessar seus métodos através da classe do componente precisamos importá-lo explicitamente.
+<pre><code class="ts nonumber">03  import [curly_open] ErrorMsgComponent [curly_close] 
+    from '../../compartilhado/error-msg/error-msg.component';</code></pre>
+</p>
+
+<p><span class='lf-strong'>Linha 4</span>: Importamos o <i>service</i> que criamos para centralizar as interações com a API.
+<pre><code class="ts">import [curly_open] LembreteService [curly_close] from '../../services/lembrete.service';</code></pre>
+</p>
+
+<p><span class='lf-strong'>Linha 5</span>: Importamos a interface <span class='lf-badge'>Lembrete</span> para, mais pra frente no arquivo, realizar a tipagem de parâmetros da classe.
+<pre><code class="ts">import [curly_open] Lembrete [curly_close] from '../../interfaces/lembrete';</code></pre>
+</p>
+
+<p><span class='lf-strong'>Linhas 7 a 11:</span>  Logo abaixo das importações encontraremos o <i>Decorator</i>. O Angular CLI terá criado o <i>decorator</i> @Component automaticamente, junto com seus três atributos: <span class='lf-badge'>selector</span>, <span class='lf-badge'>templateUrl</span> e <span class='lf-badge'>styleUrls</span>.
+
+<pre><code class="ts">@Component([curly_open]
+  selector: 'app-form-lembrete',
+  templateUrl: './criar-lembrete.component.html',
+  styleUrls: ['./criar-lembrete.component.css']
+[curly_close])</code></pre>
+
+<ul>
+<li><span class='lf-strong'>selector</span>: é o identificador do componente. Com ele podemos utilizar o componente dentro de outros componentes, como uma <span class='lf-badge'>tag</span>.
+</li>
+<li><span class='lf-strong'>templateUrl</span>: indica o caminho para o arquivo HTML onde ficará a formatação do nosso componente.
+</li>
+<li><span class='lf-strong'>styleUrls</span>: indica o caminho para o arquivo CSS de estilo do nosso componente. Os estilos definidos nesse arquivo só estarão disponíveis no arquivo .html definido no atributo <span class='lf-badge'>templateUrl</span>.
+</li>
+</ul>
+</p>
+
+<p><span class='lf-strong'>Linha 13</span>: Utilizamos o <i>decorator</i> <span class='lf-badge'>ViewChild</span>, importado anteriormente, para acessar a instância (criada no template <span class='lf-badge'>criar-lembrete.component.html</span>) do componente de erros, chamado de <span class='lf-badge'>ErrorMsgComponent</span>.
+<pre><code class="ts">@ViewChild(ErrorMsgComponent) errorMsgComponent: ErrorMsgComponent;</code></pre>
+</p>
+
+
+<p><span class='lf-strong'>Linhas 15, 16 e 17</span>: Realizamos a injeção dos <i>services</i> <span class='lf-badge'>LembreteService</span> e <span class='lf-badge'>Router</span>. Dessa forma poderemos acessa-los através dos atributos <span class='lf-badge'>lembreteService</span> e <span class='lf-badge'>router</span> respectivamente.
+<pre><code class="ts">constructor(
+    private lembreteService: LembreteService,
+    private router: Router) [curly_open] [curly_close]</code></pre>
+</p>
+
+<p><span class='lf-strong'>Linhas 19 a 24</span>: Criamos o método addLembrete que será responsável por executar o método de mesmo nome do <i>service</i> <span class='lf-badge'>lembreteService</span> para enviar a API o novo lembrete criado pelo usuário. Se a requisição for bem sucedida, o usuário será redirecionado para a página inicial da aplicação. Caso a requisição falhe, o componente de mensagem de erro será utilizado para exibir uma mensagem ao usuário.
+<pre><code class="ts nonumber">19  addLembrete() [curly_open]
+20   this.lembreteService.addLembrete(this.lembrete)
+21    .subscribe(
+22     () => [curly_open] this.router.navigateByUrl('/'); [curly_close],
+23     () => [curly_open] this.errorMsgComponent.setError('Falha ao adicionar lembrete.'); 
+       [curly_close]);
+24  [curly_close]</code></pre>
+</p>
+
+
+
+</div>

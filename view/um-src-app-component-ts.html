@@ -1,0 +1,48 @@
+<h2 class="item-titulo titulo_desc_move">
+    src/app.component.ts
+</h2>
+<div class="content-area">
+<pre><code class="ts">import [curly_open] Component [curly_close] from '@angular/core';
+
+@Component([curly_open]
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+[curly_close])
+export class AppComponent [curly_open]
+  public titulo = 'CRUD de lembretes com Angular';
+[curly_close]</code></pre>
+
+<h3>Visão geral</h3>
+
+<p>Esta é a classe do primeiro componente carregado pela aplicação, chamado de <span class='lf-badge'>app</span>. Aqui definimos o título da aplicação que ficará no <span class='lf-badge'>navbar</span> do template do componente.</p>
+
+<h3>Comentários</h3>
+
+<p><span class='lf-strong'>Linha 1</span>: Importamos, do pacote <span class='lf-badge'>@angular/core</span>, o <i>decorator</i> <span class='lf-badge'>Component</span>.
+<pre><code class="ts">import [curly_open] Component [curly_close] from '@angular/core';</code></pre>
+</p>
+
+<p><span class='lf-strong'>Linhas 3 a 7:</span>  Logo abaixo das importações encontraremos o <i>Decorator</i>. O Angular CLI terá criado o <i>decorator</i> @Component automaticamente, junto com seus três atributos: <span class='lf-badge'>selector</span>, <span class='lf-badge'>templateUrl</span> e <span class='lf-badge'>styleUrls</span>.
+
+<pre><code class="ts">@Component([curly_open]
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+[curly_close])</code></pre>
+
+<ul>
+<li><span class='lf-strong'>selector</span>: é o identificador do componente. Com ele podemos utilizar o componente dentro de outros componentes, como uma <span class='lf-badge'>tag</span>.
+</li>
+<li><span class='lf-strong'>templateUrl</span>: indica o caminho para o arquivo HTML onde ficará a formatação do nosso componente.
+</li>
+<li><span class='lf-strong'>styleUrls</span>: indica o caminho para o arquivo CSS de estilo do nosso componente. Os estilos definidos nesse arquivo só estarão disponíveis no arquivo .html definido no atributo <span class='lf-badge'>templateUrl</span>.
+</li>
+</ul>
+</p>
+
+<p><span class='lf-strong'>Linha 9</span>: Criamos o atributo público chamado <span class='lf-badge'>titulo</span>. Esse atributo receberá o nome da aplicação que será exibida no cabeçalho criado no template do componente, no arquivo <span class='lf-badge'>src/app.component.html</span>.
+<pre><code class="ts">public titulo = 'CRUD de lembretes com Angular';</code></pre>
+</p>
+
+</div>

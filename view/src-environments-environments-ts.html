@@ -1,0 +1,26 @@
+
+<h2 class="item-titulo titulo_desc_move">
+    src/environments/environments.ts
+</h2>
+<div class="content-area">
+<pre><code class="ts">export const environment = [curly_open]
+  production: false,
+  lembretesApiUrl: 'https://devreminder.herokuapp.com'
+[curly_close];</code></pre>
+
+<h3>Visão geral</h3>
+
+<p>Neste arquivo definimos configurações da aplicação que devem estar acessíveis no ambiente de desenvolvimento. Por exemplo, aqui utilizamos esse arquivo para declarar o endereço de conexão com a API no atributo <span class='lf-badge'>lembretesApiUrl</span>. Deve-se, ao publicar a aplicação em produção (buildar a aplicação), replicar essas configurações no arquivo <span class='lf-badge'>environments.prod.ts</span>, alterando os seus valores de acordo com a necessidade do ambiente de produção. Estes arquivos são criados automaticamente pelo Angular, assim como a constante <span class='lf-badge'>environment</span>, a partir da qual podemos importar essas configurações e utilizá-las em nossos códigos.</p>
+
+<h3>Comentários</h3>
+
+<p><span class='lf-strong'>Linha 2</span>: Atributo que indica, com valores booleanos, se a aplicação está sendo executada em ambiente de produção ou não. Este atributo não pode ser apagado, já que o mesmo é utilizado pelo Angular.
+<pre><code class="ts">production: false,</code></pre>
+</p>
+
+<p><span class='lf-strong'>Linha 3</span>: Ao atributo <span class='lf-badge'>lembretesApiUrl</span> atribuímos o endereço da API de lembretes utilizada pela aplicação.
+<pre><code class="ts">lembretesApiUrl: 'https://devreminder.herokuapp.com'</code></pre>
+</p>
+
+
+</div>

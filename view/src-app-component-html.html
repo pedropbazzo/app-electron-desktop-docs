@@ -1,0 +1,30 @@
+
+<h2 class="item-titulo titulo_desc_move">
+    src/app.component.html
+</h2>
+<div class="content-area">
+<pre><code class="html nonumber">01  &lt;nav class="navbar navbar-light bg-light"&gt;
+02  &lt;a class="navbar-brand" routerLink=""&gt;[curly_open][curly_open] 
+    titulo [curly_close][curly_close]&lt;/a&gt;
+03  &lt;/nav&gt;
+04  &lt;router-outlet&gt;&lt;/router-outlet&gt;</code></pre>
+
+
+<h3>Visão geral</h3>
+
+<p>Aqui está declarado o template do componente <span class='lf-badge'>app</span>. Podemos dividir esse template em duas partes. Na primeira delas criamos um cabeçalho que será exibido em todas as páginas da aplicação. Logo abaixo, inserimos o componente de rotas, o qual determina o local em que o Angular incluirá o conteúdo que corresponda a rota que está sendo atualmente navegada.</p>
+
+<h3>Comentários</h3>
+
+<p><span class='lf-strong'>Linha 1, 2 e 3</span>: Criamos um nav com as classes <span class='lf-badge'>navbar</span>, <span class='lf-badge'>navbar-light</span> e <span class='lf-badge'>bg-light</span> do bootstrap para estilização.
+<pre><code class="html nonumber">01  &lt;nav class="navbar navbar-light bg-light"&gt;
+02  &lt;a class="navbar-brand" routerLink=""&gt;[curly_open][curly_open] 
+    titulo [curly_close][curly_close]&lt;/a&gt;
+03  &lt;/nav&gt;</code></pre>
+</p>
+
+<p><span class='lf-strong'>Linha 4</span>: Adicionamos o componente de rotas. Esse componente indica para o Angular que, para cada rota especificada no arquivo <span class='lf-badge'>src/app-routing.module.ts</span>, o componente referente a esta rota, ou componente de página, deve ser carregado aqui.
+<pre><code class="html"><router-outlet></router-outlet></code></pre>
+</p>
+
+</div>

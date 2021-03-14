@@ -1,0 +1,101 @@
+
+<h2 class="item-titulo titulo_desc_move">
+    src/paginas/lista-lembrete/lista-lembrete.component.html
+</h2>
+<div class="content-area">
+<pre><code class="html nonumber">01  &lt;div class="container mt-3"&gt;
+02    &lt;div class="row"&gt;
+03      &lt;div class="col-md-8 mx-auto"&gt;
+04        &lt;app-error-msg&gt;&lt;/app-error-msg&gt;
+05        &lt;div class="text-right"&gt;
+06          &lt;button type="button" class="btn btn-success" routerLink="/lembrete/criar"&gt;
+            Novo lembrete&lt;/button&gt;
+07        &lt;/div&gt;
+08        &lt;div class="text-center" *ngIf="!existemLembretes()"&gt;
+09          Nenhum lembrete cadastrado.
+10        &lt;/div&gt;
+11      &lt;/div&gt;
+12    &lt;/div&gt;
+13    &lt;div class="row mt-3" *ngFor="let lembrete of lembretes"&gt;
+14      &lt;div class="col-md-8 mx-auto"&gt;
+15        &lt;div class="card"&gt;
+16          &lt;div class="card-header"&gt;
+17            &lt;span class="badge badge-pill" 
+18              [class.badge-danger]="lembrete.prioridade == 'ALTA' " 
+19              [class.badge-warning]="lembrete.prioridade == 'MEDIA' "
+20              [class.badge-success]="lembrete.prioridade == 'BAIXA' "&gt;
+21              PRIORIDADE [curly_open][curly_open]lembrete.
+                prioridade[curly_close][curly_close]
+22            &lt;/span&gt;
+23          &lt;/div&gt;
+24          &lt;div class="card-body"&gt;
+25            &lt;p class="card-text"&gt;[curly_open][curly_open]
+              lembrete.conteudo[curly_close][curly_close]&lt;/p&gt;
+26          &lt;/div&gt;
+27          &lt;div class="card-footer"&gt;
+28            &lt;div class="text-right"&gt;
+29              &lt;button type="button" class="btn btn-primary btn-sm ml-1" 
+                routerLink="/lembrete/editar/[curly_open][curly_open]lembrete
+                .id[curly_close][curly_close]"&gt;Editar&lt;/button&gt;
+30              &lt;button type="button" class="btn btn-danger btn-sm ml-1" 
+                (click)="deletaLembrete(lembrete.id)"&gt;X&lt;/button&gt;
+31            &lt;/div&gt;
+32          &lt;/div&gt;
+33        &lt;/div&gt;
+34      &lt;/div&gt;
+35    &lt;/div&gt;
+36  &lt;/div&gt;</code></pre>
+
+<h3>Visão geral</h3>
+
+<p>Nesse template criaremos a formatação da listagem de lembretes que será exibida para o usuário. Nessa página encontraremos, também, botões para criar um novo lembrete (que redirecionará para a página de criação) e um botões para deletar lembretes.</p>
+
+<h3>Comentários</h3>
+
+<p><span class='lf-strong'>Linhas 3 e 4</span>: Em uma coluna de tamanho 8 e centralizada criamos uma instância do componente de mensagem de erros. Dessa forma, quando o método <span class='lf-badge'>setError</span> do componente de mensagem de erros for executado na classe do componente do de listagem de lembretes, a mensagem de erro será exibida nessa posição.
+<pre><code class="html">&lt;div class="col-md-8 mx-auto"&gt;
+ &lt;app-error-msg&gt;&lt;/app-error-msg&gt;</code></pre>
+</p>
+
+<p><span class='lf-strong'>Linha 5, 6 e 7</span>: Ainda na coluna centralizada, criamos um botão à direita com o atributo <span class='lf-badge'>routerLink</span> que, ao clicar no botão, redirecionará o usuário para a página de criação de lembretes.
+<pre><code class="html nonumber">01  &lt;div class="text-right"&gt;
+02   &lt;button type="button" class="btn btn-success" routerLink="
+     /lembrete/criar"&gt;Novo lembrete&lt;/button&gt;
+03  &lt;/div&gt;</code></pre>
+</p>
+
+<p><span class='lf-strong'>Linhas 8, 9 e 10</span>: Utilizamos o método <span class='lf-badge'>existemLembretes</span>, da classe do componente, para verificar se existem lembretes. Caso não exista nenhum, uma mensagem será exibida para o usuário.
+<pre><code class="html">&lt;div class="text-center" *ngIf="!existemLembretes()"&gt;
+ Nenhum lembrete cadastrado.
+&lt;/div&gt;</code></pre>
+</p>
+
+<p><span class='lf-strong'>Linha 13</span>: Utilizamos o atributo <span class='lf-badge'>*ngFor</span> para criar uma linha (<i>row</i>, do Bootstrap) para cada lembrete da lista armazenada no atributo lembretes. Dentro desse elemento encontraremos o <i>card</i> Bootstrap referente ao lembrete dessa interação do laço.
+<pre><code class="html">&lt;div class="row mt-3" *ngFor="let lembrete of lembretes"&gt;</code></pre>
+</p>
+
+<p><span class='lf-strong'>Linhas 16 a 23</span>: No cabeçalho do <i>card</i> criaremos um <i>badge</i> com o nível de prioridade do usuário. Além disso, a cor desse <i>badge</i> será definida de acordo com o nível de prioridade.
+<pre><code class="html">&lt;div class="card-header"&gt;
+  &lt;span class="badge badge-pill" 
+   [class.badge-danger]="lembrete.prioridade == 'ALTA' " 
+   [class.badge-warning]="lembrete.prioridade == 'MEDIA' "
+   [class.badge-success]="lembrete.prioridade == 'BAIXA' "&gt;
+   PRIORIDADE [curly_open][curly_open]lembrete.prioridade[curly_close][curly_close]
+ &lt;/span&gt;
+&lt;/div&gt;</code></pre>
+</p>
+
+<p><span class='lf-strong'>Linhas 24, 25 e 26</span>: No corpo do <i>card</i> realizaremos a impressão do conteúdo do bilhete.
+<pre><code class="html">&lt;div class="card-body"&gt;
+ &lt;p class="card-text"&gt;[curly_open][curly_open]lembrete.conteudo[curly_close][curly_close]&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+</p>
+
+<p><span class='lf-strong'>Linhas 28 a 31</span>: Finalmente, no rodapé do <i>card</i>, criaremos dois botões: o primeiro redirecionará o usuário para a rota de edição de lembretes, passando o id numérico desse lembrete como parâmetro. O segundo, ao ser clicado, executará o método da <span class='lf-badge'>deletaLembrete</span>, que ficará responsável por excluir o lembrete e atualizar a listagem de lembretes.
+<pre><code class="html nonumber">28  &lt;button type="button" class="btn btn-primary btn-sm ml-1" routerLink="/lembrete
+    /editar/[curly_open][curly_open]lembrete.id[curly_close][curly_close]"&gt;Editar&lt;/button&gt;
+31  &lt;button type="button" class="btn btn-danger btn-sm ml-1" 
+    (click)="deletaLembrete(lembrete.id)"&gt;X&lt;/button&gt;</code></pre>
+</p>
+
+</div>
